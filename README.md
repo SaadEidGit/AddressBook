@@ -1,4 +1,4 @@
 # AddressBook
 ![Build Badge display](https://github.com/SaadEidGit/AddressBook/actions/workflows/maven.yaml/badge.svg)
-![Build Badge display](https://github.com/github/docs/actions/workflows/maven.yml/badge.svg)
+![Build Badge display](https://github.com/SaadEidGit/AddressBook/actions/workflows/maven.yml/badge.svg)
 
