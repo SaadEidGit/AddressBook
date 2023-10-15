@@ -13,14 +13,16 @@ import jakarta.persistence.ManyToOne;
 public class BuddyInfo {
     private String name;
     private int phoneNumber;
+    private String address;
     @Id
     @GeneratedValue
     private int id;
 
     public BuddyInfo(){}
-    public BuddyInfo(String name, int phoneNumber){
+    public BuddyInfo(String name, int phoneNumber, String address){
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.address = address;
     }
     public String getName() {
         return name;
@@ -46,4 +48,11 @@ public class BuddyInfo {
         this.name = name;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

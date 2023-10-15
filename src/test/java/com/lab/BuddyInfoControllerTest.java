@@ -2,7 +2,6 @@ package com.lab;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -12,9 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
@@ -24,8 +21,8 @@ public class BuddyInfoControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private String buddy1 = "{\"name\": \"buddy1\", \"phoneNumber\": 111111}";
-    private String buddy2 = "{\"name\": \"buddy2\", \"phoneNumber\": 222222}";
+    private String buddy1 = "{\"name\": \"buddy1\", \"phoneNumber\": 111111, \"address\": \"address1\"}";
+    private String buddy2 = "{\"name\": \"buddy2\", \"phoneNumber\": 222222, \"address\": \"address2\"}";
 
     @Test
     public void creatingAndDeletingBuddyInfo() throws Exception {
@@ -50,11 +47,11 @@ public class BuddyInfoControllerTest {
         //Get BuddyInfos from AddressBook
         this.mockMvc.perform(get("/buddyInfo?addressBookId=1&buddyInfoId=1"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("{\"name\":\"buddy1\",\"phoneNumber\":111111,\"id\":1}")));
+                .andExpect(content().string(containsString("{\"name\":\"buddy1\",\"phoneNumber\":111111,\"address\":\"address1\",\"id\":1}")));
 
         this.mockMvc.perform(get("/buddyInfo?addressBookId=1&buddyInfoId=2"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("{\"name\":\"buddy2\",\"phoneNumber\":222222,\"id\":2}")));
+                .andExpect(content().string(containsString("{\"name\":\"buddy2\",\"phoneNumber\":222222,\"address\":\"address2\",\"id\":2}")));
 
         // Deleting BuddyInfo 2
         this.mockMvc.perform(delete("/removeBuddyInfo?addressBookId=1&buddyInfoId=2"))
@@ -64,6 +61,6 @@ public class BuddyInfoControllerTest {
         this.mockMvc.perform(get("/addressBook?addressBookId=1"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(not(containsString("{\"name\":\"buddy2\",\"phoneNumber\":222222,\"id\":2}"))));
+                .andExpect(content().string(not(containsString("{\"name\":\"buddy2\",\"phoneNumber\":222222,\"address\":\"address1\",\"id\":2}"))));
     }
 }
