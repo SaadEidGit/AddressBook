@@ -1,13 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>BuddyInfo</title>
+    <title>Buddy Info</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>BuddyInfo</h1>
-<p th:text="'Id: ' + ${buddy.id}" ></p>
+<h1>Buddy Info</h1>
 <p th:text="'Name: ' + ${buddy.name}" ></p>
-<p th:text="'Phone Number: ' + ${buddy.phoneNumber}" ></p>
+<p th:text="'Phone #: ' + ${buddy.phoneNumber}" ></p>
+<p th:text="'Address: ' + ${buddy.address}" ></p>
+<p th:text="'Id: ' + ${buddy.id}" ></p>
+<a href="/homepage">Go Back to Home Page</a>
 </body>
 </html>
