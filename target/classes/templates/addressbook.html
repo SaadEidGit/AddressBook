@@ -1,18 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>AddressBook</title>
+    <title>Address Book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<h1>Address Book Contents</h1>
 <p th:text="'AddressBook ID: ' + ${addressBook.id}" ></p>
-<table>
-    <tr th:each="buddyInfo : ${addressBook.buddies}">
-        <td th:text="'ID: ' + ${buddyInfo.id}"></td>
-        <td th:text="'Name: ' + ${buddyInfo.name}"></td>
-        <td th:text="'Phone Number: ' + ${buddyInfo.phoneNumber}"></td>
-        <td th:text="'Address: ' + ${buddyInfo.address}"></td>
-    </tr>
-</table>
+<p th:each="buddy : ${addressBook.buddies}">
+    <b>id:</b> <span th:text="${buddy.id}"/>
+    <b>Name:</b> <span th:text="${buddy.name}"/>
+    <b>Phone #:</b> <span th:text="${buddy.phoneNumber}"/>
+    <b>Address:</b> <span th:text="${buddy.address}"/>
+</p>
+<a href="/homepage">Go Back to Home Page</a>
 </body>
 </html>
