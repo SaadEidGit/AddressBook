@@ -21,9 +21,9 @@ public class AddressBookController {
         return addressBook;
     }
 
-    /*@GetMapping("/addressBook")
-    public AddressBook getAddressBook(@RequestParam(name="id") int id){
+    @GetMapping("/addressBook")
+    public AddressBook getAddressBook(@RequestParam(name="addressBookId") int id){
         return this.addressBookRepository.findById(id);
-    }*/
+    }
 
 }

@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
@@ -27,7 +26,7 @@ public class MainController {
     }*/
 
     @GetMapping("/homepage")
-    public String greetingForm(Model model) {
+    public String homePage(Model model) {
         model.addAttribute("addressBook", new AddressBook());
         model.addAttribute("buddy", new BuddyInfo());
         return "homepage";
@@ -39,7 +38,7 @@ public class MainController {
         addressBook.addBuddyInfo(buddyInfo);
         buddyInfoRepository.save(buddyInfo);
         addressBookRepository.save(addressBook);
-        return "buddyinfo";
+        return "homepage";
     }
 
     @PostMapping("/addressBookCreate")
