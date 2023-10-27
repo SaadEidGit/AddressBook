@@ -31,7 +31,7 @@ public class BuddyInfoControllerTest {
         this.mockMvc.perform(get("/addressBook?addressBookId=1"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("AddressBook ID: 1")));
+                .andExpect(content().string(containsString("{\"id\":1,\"buddies\":[],\"numOfBuddies\":0}")));
 
         //Adding a BuddyInfo to AddressBook
         this.mockMvc.perform(post("/addBuddyInfo?addressBookId=1")
