@@ -8,7 +8,7 @@
 <h1>Address Book Contents</h1>
 <p th:text="'AddressBook ID: ' + ${addressBook.id}" ></p>
 <p th:each="buddy : ${addressBook.buddies}">
-    <b>id:</b> <span th:text="${buddy.id}"/>
+    <b>Id:</b> <span th:text="${buddy.id}"/>
     <b>Name:</b> <span th:text="${buddy.name}"/>
     <b>Phone #:</b> <span th:text="${buddy.phoneNumber}"/>
     <b>Address:</b> <span th:text="${buddy.address}"/>
