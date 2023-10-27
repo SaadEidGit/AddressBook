@@ -62,5 +62,9 @@ public class BuddyInfoControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(not(containsString("{\"name\":\"buddy2\",\"phoneNumber\":222222,\"address\":\"address1\",\"id\":2}"))));
+
+        // Deleting BuddyInfo 1
+        this.mockMvc.perform(delete("/removeBuddyInfo?addressBookId=1&buddyInfoId=1"))
+                .andExpect(status().isOk());
     }
 }
