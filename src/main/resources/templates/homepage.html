@@ -8,15 +8,15 @@
 </head>
 <body>
 <h2>Address Book</h2>
-<form action="#" th:action="@{/addressBookCreate}" th:object="${addressBook}" method="post">
-    <p><input type="submit" value="Create/Open AddressBook" /></p>
+<form id="addressBookForm" action="#" th:action="@{/addressBookCreate}" th:object="${addressBook}" method="post">
+    <p><input type="submit" value="Create AddressBook" /></p>
 </form>
 <h2>Create Buddy</h2>
-<form action="#" th:action="@{/buddyAdd}" th:object="${buddy}" method="post">
+<form id="buddyForm" action="#" th:action="@{/buddyAdd}" th:object="${buddy}" method="post">
     <p>Name: <input type="text" th:field="*{name}"/></p>
     <p>Phone Number: <input type="text" th:field="*{phoneNumber}"/></p>
     <p>Address: <input type="text" th:field="*{address}"/></p>
-    <p><input type="submit" value="Add Buddy" /> <input type="reset" value="Reset" /></p>
+    <p><input type="submit" value="Add Buddy" /> </p>
 </form>
 <p class="addressbook-id"></p>
 <p class="addressbook-contents"></p>

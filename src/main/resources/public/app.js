@@ -1,15 +1,40 @@
 $(document).ready(function () {
-    $.ajax({
-        url: "http://localhost:8080/addressBook?addressBookId=1"
-    }).then(function (data) {
-        if (data) {
-            $('.addressbook-id').append("Address Book ID: " + data.id);
-            for (i = 0; i < data.buddies.length; i++) {
-                $('.addressbook-contents')
-                .append("Name: " + data.buddies[i].name).append("<br>")
-                .append("Phone Number: " + data.buddies[i].phoneNumber).append("<br>")
-                .append("Address: " + data.buddies[i].address).append("<br>");
+
+    $('#addressBookForm').submit(function (event) {
+        event.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/addressBookCreate",
+            success: function (response) {
+                $('.addressbook-id').empty();
+                $('.addressbook-contents').empty();
+                $('.addressbook-id').append("Address Book ID: " + response.id);
+            },
+            error: function (error) {
+                alert("Error: " + error.responseText);
             }
-        }
+        });
+    });
+
+    $('#buddyForm').submit(function (event) {
+        event.preventDefault();
+
+        var formData = $('#buddyForm').serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/buddyAdd",
+            data: formData,
+            success: function (response) {
+                $('.addressbook-contents')
+                    .append("Name: " + response.name).append("<br>")
+                    .append("Phone Number: " + response.phoneNumber).append("<br>")
+                    .append("Address: " + response.address).append("<br>").append("<br>");
+            },
+            error: function (error) {
+                alert("Error: " + error.responseText);
+            }
+        });
     });
 });

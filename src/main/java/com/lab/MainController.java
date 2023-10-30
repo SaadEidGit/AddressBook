@@ -1,6 +1,8 @@
 package com.lab;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,22 +35,25 @@ public class MainController {
     }
 
     @PostMapping("/buddyAdd")
-    public String buddySubmit(@ModelAttribute("buddy") BuddyInfo buddyInfo) {
+    public ResponseEntity<BuddyInfo> buddySubmit(@ModelAttribute("buddy") BuddyInfo buddyInfo) {
         AddressBook addressBook = addressBookRepository.findById(1);
         addressBook.addBuddyInfo(buddyInfo);
         buddyInfoRepository.save(buddyInfo);
         addressBookRepository.save(addressBook);
-        return "homepage";
+
+        // Return the created BuddyInfo as a JSON response
+        return new ResponseEntity<>(buddyInfo, HttpStatus.OK);
     }
 
     @PostMapping("/addressBookCreate")
-    public String addressBookSubmit(Model model){
-        if (addressBookRepository.findById(1) == null){
-            addressBookRepository.save(new AddressBook());
-        }
-        AddressBook addressBook = addressBookRepository.findById(1);
+    public ResponseEntity<AddressBook> addressBookSubmit(Model model){
+        AddressBook addressBook = new AddressBook();
+        addressBookRepository.save(addressBook);
+
         model.addAttribute("addressBook", addressBook);
         model.addAttribute("buddy", new BuddyInfo());
-        return "homepage";
+
+        // Return the created BuddyInfo as a JSON response
+        return new ResponseEntity<>(addressBook, HttpStatus.OK);
     }
 }
