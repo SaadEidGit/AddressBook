@@ -48,6 +48,7 @@ public class MainController {
         }
         AddressBook addressBook = addressBookRepository.findById(1);
         model.addAttribute("addressBook", addressBook);
-        return "addressBook";
+        model.addAttribute("buddy", new BuddyInfo());
+        return "homepage";
     }
 }
